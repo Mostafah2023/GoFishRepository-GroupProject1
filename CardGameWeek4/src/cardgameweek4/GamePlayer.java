@@ -25,7 +25,7 @@ public class GamePlayer {
             
             //Check if it's a valid amount of players
             while(true){
-                if(numOfPlayers > 0 && numOfPlayers < 6) break;
+                if(numOfPlayers > 1 && numOfPlayers < 6) break;
                 System.out.println("Please enter a valid number of players (2-5): ");
                 numOfPlayers = in.nextInt();
             }
@@ -33,8 +33,9 @@ public class GamePlayer {
             //Set the number of cards dealt to each player
             if(numOfPlayers < 4 && numOfPlayers > 0){
                 numOfCards = 5;
-            }else if(numOfPlayers >= 4)
+            }else if(numOfPlayers > 3){
                 numOfCards = 7;
+            }
         }
 
         //Create the each player and their hands (their cards)
@@ -43,6 +44,10 @@ public class GamePlayer {
             List<Card> cardHand = CardHandGenerator.generateHand(numOfCards);
             playersHands.add(cardHand);
             playersHands.set(i, sortHand(playersHands.get(i)));
+            int trueCount = 0;
+            for(int j = 0; j < Card.usedCards.length; j++)
+                for(boolean uC : Card.usedCards[j])
+                    if(uC) trueCount++;
         }
         
         //Print out each players hand
@@ -51,7 +56,7 @@ public class GamePlayer {
             for(Card c : playersHands.get(i))
                 if (c != null)
                     System.out.println(c.toString());
-            System.out.print("\n");
+            System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         }
         
         //Play the game
@@ -96,7 +101,7 @@ public class GamePlayer {
                                 
                             }
                     if(j + 1 == numOfPlayers && !cardFound){
-                        System.out.println("Go fish!");
+                        System.out.println("Go fish!\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
                         Card tempCard = CardHandGenerator.randomCardGenerator();
                         while(CardHandGenerator.checkUsedCard(tempCard.getSuitOrdinal(),
                                 tempCard.getValueOrdinal()))
