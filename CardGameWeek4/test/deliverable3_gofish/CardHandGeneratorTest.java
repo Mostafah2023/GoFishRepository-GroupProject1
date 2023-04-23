@@ -108,8 +108,8 @@ public class CardHandGeneratorTest {
         Card testCard = CardHandGenerator.randomCardGenerator(),
                 expResultCard = testCard,
                 resultCard = CardHandGenerator.randomCardGenerator();
-        boolean expResult = false, result = true;
-        if(expResultCard != resultCard) result = false;
+        boolean expResult = false, result = false;
+        if(expResultCard == resultCard) result = true;
         assertEquals(expResult, result);
     }
     
