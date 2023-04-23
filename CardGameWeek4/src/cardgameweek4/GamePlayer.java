@@ -144,7 +144,6 @@ public class GamePlayer {
                             points++;
                 }
         }
-        System.out.println("Points: " + points);
         return points;
     }
     
