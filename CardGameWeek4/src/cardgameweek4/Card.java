@@ -1,10 +1,12 @@
-package cardgameweek4;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package deliverable3_gofish;
 
 /**
- * Starter code for the Card class. To be used in Week 4.
  *
- * @author dancye, 2019
- * @modified Paul Bonenfant Feb 2022
+ * @author Cameron, Mostafa, David
  */
 public class Card {
 
@@ -16,19 +18,56 @@ public class Card {
         ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING
     }
     
-    private final Suit suit;
-    private final Value value;
+    public static boolean[][] usedCards = new boolean[4][13];
+    
+    private Suit suit;
+    private Value value;
 
     public Card(Suit suit, Value value) {
         this.suit = suit;
         this.value = value;
     }
+    
+    public static void setUsedCards(Suit suit, Value value, boolean state){
+        System.out.println("Set: " + usedCards[suit.ordinal()][value.ordinal()]);
+        usedCards[suit.ordinal()][value.ordinal()] = state;
+        System.out.println("Has been set: " + usedCards[suit.ordinal()][value.ordinal()]);
+    }
+    
+    public static int countCardsLeft(){
+        int unusedCards = 0;
+        for(boolean[] uCA : usedCards)
+            for(boolean uC : uCA)
+                if(!uC) unusedCards++;
+        return unusedCards;
+    }
+    
+    public int getValueOrdinal(){
+        return value.ordinal();
+    }
+    
+    public int getSuitOrdinal(){
+        return suit.ordinal();
+    }
+    
+    public void setValue(Value value){
+        this.value = value;
+    }
 
     public Value getValue() {
-        return this.value;
+        return value;
+    }
+    
+    public void setSuit(Suit suit) {
+        this.suit = suit;
     }
 
     public Suit getSuit() {
-        return this.suit;
+        return suit;
+    }
+    
+    @Override
+    public String toString(){
+        return value + " of " + suit;
     }
 }
