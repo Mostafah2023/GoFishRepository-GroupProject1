@@ -29,9 +29,7 @@ public class Card {
     }
     
     public static void setUsedCards(Suit suit, Value value, boolean state){
-        System.out.println("Set: " + usedCards[suit.ordinal()][value.ordinal()]);
         usedCards[suit.ordinal()][value.ordinal()] = state;
-        System.out.println("Has been set: " + usedCards[suit.ordinal()][value.ordinal()]);
     }
     
     public static int countCardsLeft(){
