@@ -45,15 +45,16 @@ public class CardHandGenerator {
     
     public static Card randomCardGenerator(){
         // we'll use this to generate random numbers
+        Random random = new Random();
         
         // let's get these lengths once
         int numValues = Card.Value.values().length, numSuits = Card.Suit.values().length,
-                randSuit = (int)(Math.random() * numSuits), randValue = (int)(Math.random() * numValues);
+                randSuit = random.nextInt(numSuits), randValue = random.nextInt(numValues);
         
         //Checks if the card is used or not
         while(checkUsedCard(randSuit, randValue)){
-            randSuit = (int)(Math.random() * numSuits);
-            randValue = (int)(Math.random() * numValues);
+            randSuit = random.nextInt(numSuits);
+            randValue = random.nextInt(numValues);
         }
         
         Card.setUsedCards(Card.Suit.values()[randSuit], Card.Value.values()[randValue], true);
