@@ -24,13 +24,25 @@ public class GamePlayerTest {
         List<Card> hand = Arrays.asList(new Card(Card.Suit.values()[0], Card.Value.values()[0]),
                         new Card(Card.Suit.values()[1], Card.Value.values()[0]),
                         new Card(Card.Suit.values()[2], Card.Value.values()[0]),
+                        new Card(Card.Suit.values()[3], Card.Value.values()[0]),
+                        new Card(Card.Suit.values()[0], Card.Value.values()[1]),
+                        new Card(Card.Suit.values()[1], Card.Value.values()[1]),
+                        new Card(Card.Suit.values()[2], Card.Value.values()[1]),
+                        new Card(Card.Suit.values()[3], Card.Value.values()[1]));
+        int expResult = 2, result = GamePlayer.checkForSet(hand);
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testCheckForSetBoundary() {
+        System.out.println("checkForSetBoundary");
+        List<Card> hand = Arrays.asList(new Card(Card.Suit.values()[0], Card.Value.values()[0]),
+                        new Card(Card.Suit.values()[1], Card.Value.values()[0]),
+                        new Card(Card.Suit.values()[2], Card.Value.values()[0]),
                         new Card(Card.Suit.values()[3], Card.Value.values()[0]));
         int expResult = 1, result = GamePlayer.checkForSet(hand);
         assertEquals(expResult, result);
     }
-    
-    //Boundary is not required as there is only one scenario where
-    //  it ends up true since it's a binary check
     
     @Test
     public void testCheckForSetBad() {
@@ -100,19 +112,27 @@ public class GamePlayerTest {
     public void testDrawCardGood() {
         System.out.println("drawCardGood");
         boolean result = false, expResult = true;
-        Card testCard = GamePlayer.drawCard(), resultCard = testCard, expResultCard = testCard;
-        if(resultCard == expResultCard) result = true;
+        Card resultCard = GamePlayer.drawCard(),
+                expResultCard = GamePlayer.drawCard();
+        if(resultCard != expResultCard) result = true;
         assertEquals(expResult, result);
     }
     
-    //Once again boundary is not required as there is only one scenario where
-    //  it ends up true since it's a binary check
+    @Test
+    public void testDrawCardBoundary() {
+        System.out.println("drawCardBoundary");
+        boolean result = true, expResult = true;
+        Card testCard = GamePlayer.drawCard(), resultCard = testCard,
+                expResultCard = testCard;
+        if(resultCard != expResultCard) result = false;
+        assertEquals(expResult, result);
+    }
     
     @Test
     public void testDrawCardBad() {
         System.out.println("drawCardBad");
         boolean result = false, expResult = false;
-        Card testCard = GamePlayer.drawCard(), resultCard = testCard, expResultCard = null;
+        Card resultCard = GamePlayer.drawCard(), expResultCard = null;
         if(resultCard == expResultCard) result = true;
         assertEquals(expResult, result);
     }
