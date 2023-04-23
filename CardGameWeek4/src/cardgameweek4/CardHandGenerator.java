@@ -28,8 +28,6 @@ public class CardHandGenerator {
             // get a random suit and value. Note we're not concerned about uniqueness
             // at this point (this has been changed in the newest implementation)
             
-            tempCard = randomCardGenerator();
-            
             // Add the new card to the hand   
             hand.add(tempCard);
         }
@@ -47,21 +45,20 @@ public class CardHandGenerator {
     
     public static Card randomCardGenerator(){
         // we'll use this to generate random numbers
-        Random random = new Random();
         
         // let's get these lengths once
         int numValues = Card.Value.values().length, numSuits = Card.Suit.values().length,
-                randSuit = random.nextInt(numSuits), randValue = random.nextInt(numValues);
+                randSuit = (int)(Math.random() * numSuits), randValue = (int)(Math.random() * numValues);
         
         //Checks if the card is used or not
         while(checkUsedCard(randSuit, randValue)){
-            randSuit = random.nextInt(numSuits);
-            randValue = random.nextInt(numValues);
+            randSuit = (int)(Math.random() * numSuits);
+            randValue = (int)(Math.random() * numValues);
         }
         
         Card.setUsedCards(Card.Suit.values()[randSuit], Card.Value.values()[randValue], true);
         
-        return new Card(Card.Suit.values()[random.nextInt(numSuits)],
-                Card.Value.values()[random.nextInt(numValues)]);
+        return new Card(Card.Suit.values()[randSuit],
+                Card.Value.values()[randValue]);
     }
 }
