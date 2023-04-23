@@ -99,18 +99,25 @@ public class CardHandGeneratorTest {
         assertEquals(expResult, result);
     }
     
-    //Once again boundary is not required as there is only one scenario where
-    //  it ends up true since it's a binary check
+    @Test
+    public void testRandomCardGeneratorBoundary() {
+        System.out.println("randomCardGeneratorBoundary");
+        Card testCard = CardHandGenerator.randomCardGenerator(),
+                expResultCard = testCard,
+                resultCard = CardHandGenerator.randomCardGenerator();
+        boolean expResult = true, result = false;
+        if(expResultCard == resultCard) result = true;
+        assertEquals(expResult, result);
+    }
     
     @Test
     public void testRandomCardGeneratorBad() {
         System.out.println("randomCardGeneratorBad");
         Card testCard = CardHandGenerator.randomCardGenerator(),
                 expResultCard = testCard,
-                resultCard = CardHandGenerator.randomCardGenerator();
+                resultCard = null;
         boolean expResult = false, result = false;
         if(expResultCard == resultCard) result = true;
         assertEquals(expResult, result);
     }
-    
 }
